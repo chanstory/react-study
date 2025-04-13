@@ -10,7 +10,6 @@ export async function getBestSellerCategorys() {
 
 export async function getBooksByCategory(category: string) {
   const categoryInfo = await bookData.fetchCategoryInfo(category);
-  console.log(categoryInfo);
   if (!categoryInfo.results || !categoryInfo.results.books) {
     throw new Error('results not exist');
   }

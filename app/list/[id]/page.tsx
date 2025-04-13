@@ -2,8 +2,8 @@ import Link from "next/link";
 import { getBooksByCategory } from "../../../service/book-service"
 import styles from "../../../styles/list.module.css";
 
-
-export default async function BookList({ params: { id } }) {
+export default async function BookList({ params }) {
+  const { id } = await params
   const books = await getBooksByCategory(id);
 
   return (
@@ -14,7 +14,7 @@ export default async function BookList({ params: { id } }) {
           {books.map((item, index) => 
             {
                 return (
-                    <div>
+                    <div key={index}>
                         <img src={item.book_image}></img>
                         <span>{item.title}</span>
                         <span>{item.author}</span>
