@@ -2,12 +2,12 @@
 
 import FormButton from "@/components/form-btn";
 import { useFormState } from "react-dom";
-import { handleForm } from "./actions";
+import { login } from "./actions";
 import { startTransition } from "react";
 
 
 export default function Login() {
-  const [state, action] = useFormState(handleForm, {code: 0});
+  const [state, action] = useFormState(login, null);
   const inputCssClassName = 'h-10 w-full border-1 border-solid rounded-2xl bg-white p-3';
   return (
     <div className="flex justify-center items-center w-lvw h-lvh bg-gray-100">
@@ -22,29 +22,36 @@ export default function Login() {
         }}
         className="flex flex-col gap-2 w-72"
       >
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          className={inputCssClassName}
-          required
+        <div>
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            className={state?.fieldErrors.email ? `${inputCssClassName} border-red-500` : inputCssClassName}
+            required
           />
-        <input
-          name="userName"
-          type="text"
-          placeholder="Username"
-          className={inputCssClassName}
-          required
+          {state?.fieldErrors.email ? <div className="text-xs text-red-500">{state?.fieldErrors.email}</div> : undefined}
+        </div>
+        
+        <div>
+          <input
+            name="userName"
+            type="text"
+            placeholder="Username"
+            className={state?.fieldErrors.userName ? `${inputCssClassName} border-red-500` : inputCssClassName}
+            required
           />
+          {state?.fieldErrors.userName ? <div className="text-xs text-red-500">{state?.fieldErrors.userName}</div> : undefined}
+        </div>
         <div>
           <input
             name="password"
             type="password"
             placeholder="Password"
-            className={state?.errMessage ? `${inputCssClassName} border-red-500` : inputCssClassName}
+            className={state?.fieldErrors.password ? `${inputCssClassName} border-red-500` : inputCssClassName}
             required
           />
-          {state?.errMessage ? <div className="text-xs text-red-500">{state?.errMessage}</div> : undefined}
+          {state?.fieldErrors.password ? <div className="text-xs text-red-500">{state?.fieldErrors.password}</div> : undefined}
         </div>
         <FormButton text="Log in"/>
       </form>
