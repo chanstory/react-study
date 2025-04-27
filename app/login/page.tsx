@@ -32,17 +32,6 @@ export default function Login() {
           />
           {state?.fieldErrors.email ? <div className="text-xs text-red-500">{state?.fieldErrors.email}</div> : undefined}
         </div>
-        
-        <div>
-          <input
-            name="userName"
-            type="text"
-            placeholder="Username"
-            className={state?.fieldErrors.userName ? `${inputCssClassName} border-red-500` : inputCssClassName}
-            required
-          />
-          {state?.fieldErrors.userName ? <div className="text-xs text-red-500">{state?.fieldErrors.userName}</div> : undefined}
-        </div>
         <div>
           <input
             name="password"
