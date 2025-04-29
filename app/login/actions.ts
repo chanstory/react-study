@@ -16,7 +16,6 @@ const checkEmailExists = async (email: string) => {
       id: true,
     },
   });
-  console.log(user);
   return Boolean(user);
 };
 
