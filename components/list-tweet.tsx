@@ -1,7 +1,4 @@
-import { InitialTweets } from "@/app/(tweets)/page";
 import { Like, User } from "@/lib/generated/prisma";
-// import { formatToTimeAgo, formatToWon } from "@/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
 
 interface ListProductProps {

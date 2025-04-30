@@ -1,6 +1,6 @@
+import AddTweet from "@/components/add-tweet";
 import TweetList from "@/components/tweet-list";
 import db from "@/lib/db";
-import { Prisma } from "@prisma/client";
 
 async function getTweets() {
   const tweets = await db.tweet.findMany({
@@ -24,7 +24,8 @@ export type InitialTweets = Awaited<ReturnType<typeof getTweets>>;
 export default async function Tweets() {
   const tweets = await getTweets();
   return (
-    <div className="flex justify-center items-center w-lvw h-lvh bg-gray-100">
+    <div className="flex flex-col justify-center items-center w-lvw h-lvh bg-gray-100">
+      <AddTweet />
       <TweetList initTweets={tweets} />
     </div>
   );
